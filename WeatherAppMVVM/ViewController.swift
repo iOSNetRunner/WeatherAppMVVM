@@ -66,6 +66,7 @@ class ViewController: UIViewController {
             cell.configureTemperature(with: String(item.temperature))
             cell.configureTime(with: String(item.timepoint))
             
+            
            
         }.disposed(by: bag)
     }
