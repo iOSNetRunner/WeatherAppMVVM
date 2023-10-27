@@ -22,10 +22,7 @@ final class CollectionViewCell: UICollectionViewCell {
     
         imageView.image = UIImage(systemName: "cloud.sun.fill")?.withRenderingMode(.alwaysOriginal)
         imageView.contentMode = .scaleAspectFill
-        
-        
-        
-        
+
         return imageView
     }()
     
@@ -38,11 +35,9 @@ final class CollectionViewCell: UICollectionViewCell {
     }()
     
     
-    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        contentView.backgroundColor = .systemBlue
         contentView.addSubview(timeLabel)
         contentView.addSubview(weatherImageView)
         contentView.addSubview(temperatureLabel)
@@ -52,22 +47,15 @@ final class CollectionViewCell: UICollectionViewCell {
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         
         configureConstraints()
-        
-        
     }
     
     func configureTemperature(with string: String) {
-        temperatureLabel.text = string + "℃"
+        temperatureLabel.text = string + "º"
     }
     
     func configureTime(with string: String) {
         timeLabel.text = string
     }
-    
-    
-    
-    
-    
     
     func configureConstraints() {
         timeLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
@@ -80,7 +68,6 @@ final class CollectionViewCell: UICollectionViewCell {
         
         temperatureLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         temperatureLabel.topAnchor.constraint(equalTo: weatherImageView.bottomAnchor, constant: 10).isActive = true
-
     }
     
 }

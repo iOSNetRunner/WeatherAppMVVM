@@ -23,12 +23,12 @@ final class ViewModel {
             }
             do {
                 
-                let responseData = try JSONDecoder().decode(Forecast.self, from: data)
+                let responseData = try JSONDecoder().decode(HourForecast.self, from: data)
                 self.forecasts.on(.next(responseData.data))
-                print("hello")
+                
                 
             } catch {
-                print("CATCH ERROR\n")
+                
                 print(error)
             }
         }

@@ -1,13 +1,13 @@
 //
-//  Forecast.swift
+//  HourForecast.swift
 //  WeatherAppMVVM
 //
 //  Created by Dmitrii Galatskii on 26.10.2023.
 //
 
 
-// MARK: - Forecast
-struct Forecast: Codable {
+// MARK: - Forecast hour-by-hour
+struct HourForecast: Codable {
     let data: [Data]
 
     enum CodingKeys: String, CodingKey {
