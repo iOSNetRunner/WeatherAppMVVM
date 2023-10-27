@@ -17,13 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="c49-vP-fJv">
-                                <rect key="frame" x="16" y="496" width="361" height="302"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="c49-vP-fJv">
+                                <rect key="frame" x="16" y="526" width="361" height="272"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" systemColor="systemGray6Color"/>
                                 <inset key="separatorInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="qaQ-4g-Ydu">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableViewCell" id="qaQ-4g-Ydu" customClass="TableViewCell" customModule="WeatherAppMVVM" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="361" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qaQ-4g-Ydu" id="nJm-MX-wze">
@@ -47,7 +47,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell2" id="rW1-pV-b71" customClass="CollectionViewCell" customModule="WeatherAppMVVM" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="rW1-pV-b71" customClass="CollectionViewCell" customModule="WeatherAppMVVM" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="74" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GeT-Yw-ITr">
@@ -88,6 +88,18 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current sunny weather. Wind up to 10 m/s." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIw-0f-jv1">
+                                <rect key="frame" x="32" y="351.66666666666669" width="345" height="14.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7-DAY FORECAST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNK-AS-978">
+                                <rect key="frame" x="32" y="501.66666666666669" width="345" height="14.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <color key="textColor" systemColor="systemGray4Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.51840222308220218" green="0.78565651106065815" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -96,19 +108,26 @@
                             <constraint firstItem="aHd-sj-qVn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7Ib-OK-1cG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="c49-vP-fJv" secondAttribute="trailing" constant="16" id="C9R-mB-gVF"/>
                             <constraint firstItem="dY5-XX-lw3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="LsW-zd-wUo"/>
-                            <constraint firstItem="c49-vP-fJv" firstAttribute="top" secondItem="aHd-sj-qVn" secondAttribute="bottom" constant="20" id="Sc6-cL-eGq"/>
+                            <constraint firstItem="c49-vP-fJv" firstAttribute="top" secondItem="aHd-sj-qVn" secondAttribute="bottom" constant="50" id="Sc6-cL-eGq"/>
                             <constraint firstItem="c49-vP-fJv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="T6D-63-zOY"/>
+                            <constraint firstItem="aHd-sj-qVn" firstAttribute="top" secondItem="pIw-0f-jv1" secondAttribute="bottom" constant="10" id="Tlp-e2-yR5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aHd-sj-qVn" secondAttribute="trailing" constant="16" id="Zv9-kd-lJ3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="c49-vP-fJv" secondAttribute="bottom" constant="20" id="fPT-FU-N0h"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dY5-XX-lw3" secondAttribute="trailing" constant="16" id="fh5-5F-DAQ"/>
+                            <constraint firstItem="pIw-0f-jv1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="gQt-Vo-Fvd"/>
                             <constraint firstItem="aHd-sj-qVn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="qCa-yO-X3t"/>
+                            <constraint firstItem="sNK-AS-978" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="tpx-Nq-BjE"/>
                             <constraint firstItem="aHd-sj-qVn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tqw-ab-Djj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sNK-AS-978" secondAttribute="trailing" constant="16" id="uJV-Pt-rMZ"/>
+                            <constraint firstItem="c49-vP-fJv" firstAttribute="top" secondItem="sNK-AS-978" secondAttribute="bottom" constant="10" id="yEz-ey-PKU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pIw-0f-jv1" secondAttribute="trailing" constant="16" id="yHt-Aj-7l3"/>
                             <constraint firstItem="dY5-XX-lw3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="65" id="zx0-IL-iZd"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="aHd-sj-qVn" id="9GS-FT-IB8"/>
                         <outlet property="currentPlaceLabel" destination="7EV-sP-Sg6" id="gbs-7B-mmt"/>
+                        <outlet property="currentStatusLabel" destination="pIw-0f-jv1" id="x9Q-uT-0kf"/>
                         <outlet property="currentTemperatureLabel" destination="9Jv-dv-E8G" id="0Qi-vu-dQ4"/>
                         <outlet property="currentWeatherLabel" destination="FPB-4p-zxP" id="UwO-B8-aLZ"/>
                         <outlet property="minMaxTemperatureLabel" destination="KK2-pp-Qnf" id="oHd-Gw-97n"/>
@@ -121,6 +140,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

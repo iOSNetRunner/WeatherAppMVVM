@@ -11,13 +11,14 @@ import RxSwift
 
 final class ViewController: UIViewController {
     
-    
+    //MARK: - IBOutlets
     @IBOutlet weak var currentPlaceLabel: UILabel!
     @IBOutlet weak var currentTemperatureLabel: UILabel!
-    
     @IBOutlet weak var currentWeatherLabel: UILabel!
-    
     @IBOutlet weak var minMaxTemperatureLabel: UILabel!
+    
+    
+    @IBOutlet weak var currentStatusLabel: UILabel!
     
     
     
@@ -25,57 +26,52 @@ final class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
-    
-    
+    //MARK: - Private properties
     private let viewModel = ViewModel()
     private let bag = DisposeBag()
-    
-    
-    
-    
-    
-    
 
+    //MARK: - View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         applyVisualParameters()
         
-        viewModel.getForecasts()
-        bindTableView()
+        viewModel.getHourlyForecast()
+        viewModel.getWeekForecast()
+        
         bindCollectionView()
+        bindTableView()
        
         
         
         
+        
     }
 
 
-   
-    func bindTableView() {
-        tableView.rx.setDelegate(self).disposed(by: bag)
-        
-        viewModel.forecasts.bind(to: tableView.rx.items(cellIdentifier: "cell")) { (row, item, cell) in
-            
-            cell.textLabel?.text = item.weather
-            cell.detailTextLabel?.text = item.humidity
-            
-        }.disposed(by: bag)
-        
-        
-    }
-    
+   //MARK: RX bindings
     func bindCollectionView() {
         collectionView.rx.setDelegate(self).disposed(by: bag)
         
-        viewModel.forecasts.bind(to: collectionView.rx.items(cellIdentifier: "cell2", cellType: CollectionViewCell.self)) { row, item, cell in
+        viewModel.hourlyForecast.bind(to: collectionView.rx.items(cellIdentifier: CollectionViewCell.identifier, cellType: CollectionViewCell.self)) { row, item, cell in
             
+            cell.configureTemperature(with: item.temperature)
+            cell.configureTime(with: item.timepoint)
             
-            cell.configureTemperature(with: String(item.temperature))
-            cell.configureTime(with: String(item.timepoint))
+        }.disposed(by: bag)
+    }
+    
+    
+    
+    func bindTableView() {
+        tableView.rx.setDelegate(self).disposed(by: bag)
+        
+        viewModel.weekForecast.bind(to: tableView.rx.items(cellIdentifier: TableViewCell.identifier, cellType: TableViewCell.self)) { (row, item, cell) in
             
+            cell.configureDay(with: item.date)
+            cell.configureMinTemperature(with: item.temperature.min)
+            cell.configureMaxTemperature(with: item.temperature.max)
             
-           
         }.disposed(by: bag)
     }
     
@@ -86,6 +82,8 @@ final class ViewController: UIViewController {
     
     
     
+    
+    //MARK: - Flow
     private func applyVisualParameters() {
         view.setGradientBackground()
         
@@ -113,15 +111,12 @@ final class ViewController: UIViewController {
         tableView.backgroundColor = collectionView.backgroundColor
         
         
-
     }
     
     
 }
 
-extension ViewController: UITableViewDelegate {
-    
-}
+extension ViewController: UITableViewDelegate { }
 
 
 

@@ -9,6 +9,8 @@ import UIKit
 
 final class CollectionViewCell: UICollectionViewCell {
     
+    static var identifier: String { "\(Self.self)" }
+    
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
@@ -49,12 +51,19 @@ final class CollectionViewCell: UICollectionViewCell {
         configureConstraints()
     }
     
-    func configureTemperature(with string: String) {
-        temperatureLabel.text = string + "º"
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        timeLabel.text = nil
+       // weatherImageView.image = nil
+        temperatureLabel.text = nil
     }
     
-    func configureTime(with string: String) {
-        timeLabel.text = string
+    func configureTemperature(with int: Int) {
+        temperatureLabel.text = String(int) + "º"
+    }
+    
+    func configureTime(with int: Int) {
+        timeLabel.text = String(int)
     }
     
     func configureConstraints() {
