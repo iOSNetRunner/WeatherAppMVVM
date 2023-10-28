@@ -13,7 +13,7 @@ final class CollectionViewCell: UICollectionViewCell {
     
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: .fifteen)
         label.textColor = .white
         
         return label
@@ -28,7 +28,7 @@ final class CollectionViewCell: UICollectionViewCell {
     
     private let temperatureLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont.boldSystemFont(ofSize: .fifteen)
         label.textColor = .white
         
         return label
@@ -52,12 +52,12 @@ final class CollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         timeLabel.text = nil
-       // weatherImageView.image = nil
+        weatherImageView.image = nil
         temperatureLabel.text = nil
     }
     
     func configureTemperature(with int: Int) {
-        temperatureLabel.text = String(int) + "º"
+        temperatureLabel.text = String(int) + .degree
     }
     
     func configureTime(with string: String) {

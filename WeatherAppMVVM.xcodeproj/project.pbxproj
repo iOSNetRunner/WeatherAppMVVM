@@ -17,7 +17,7 @@
 		607BAB7B2AED1B8B009EF327 /* WeatherDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BAB7A2AED1B8B009EF327 /* WeatherDecoder.swift */; };
 		607BAB7D2AED34D9009EF327 /* DateDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BAB7C2AED34D9009EF327 /* DateDecoder.swift */; };
 		607BAB7F2AED5ECA009EF327 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BAB7E2AED5ECA009EF327 /* Constants.swift */; };
-		607BAB812AED6D6C009EF327 /* GeoDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BAB802AED6D6C009EF327 /* GeoDecoder.swift */; };
+		607BAB812AED6D6C009EF327 /* Geocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607BAB802AED6D6C009EF327 /* Geocoder.swift */; };
 		60C880382AE79D0600A9D172 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C880372AE79D0600A9D172 /* AppDelegate.swift */; };
 		60C8803A2AE79D0600A9D172 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C880392AE79D0600A9D172 /* SceneDelegate.swift */; };
 		60C8803C2AE79D0600A9D172 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C8803B2AE79D0600A9D172 /* MainViewController.swift */; };
@@ -39,7 +39,7 @@
 		607BAB7A2AED1B8B009EF327 /* WeatherDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDecoder.swift; sourceTree = "<group>"; };
 		607BAB7C2AED34D9009EF327 /* DateDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDecoder.swift; sourceTree = "<group>"; };
 		607BAB7E2AED5ECA009EF327 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		607BAB802AED6D6C009EF327 /* GeoDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDecoder.swift; sourceTree = "<group>"; };
+		607BAB802AED6D6C009EF327 /* Geocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geocoder.swift; sourceTree = "<group>"; };
 		60C880342AE79D0600A9D172 /* WeatherAppMVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherAppMVVM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C880372AE79D0600A9D172 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60C880392AE79D0600A9D172 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 				607BAB7A2AED1B8B009EF327 /* WeatherDecoder.swift */,
 				607BAB7C2AED34D9009EF327 /* DateDecoder.swift */,
 				607BAB7E2AED5ECA009EF327 /* Constants.swift */,
-				607BAB802AED6D6C009EF327 /* GeoDecoder.swift */,
+				607BAB802AED6D6C009EF327 /* Geocoder.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -314,7 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607BAB812AED6D6C009EF327 /* GeoDecoder.swift in Sources */,
+				607BAB812AED6D6C009EF327 /* Geocoder.swift in Sources */,
 				60C8803C2AE79D0600A9D172 /* MainViewController.swift in Sources */,
 				60C880382AE79D0600A9D172 /* AppDelegate.swift in Sources */,
 				607BAB702AEC147A009EF327 /* LocationManager.swift in Sources */,

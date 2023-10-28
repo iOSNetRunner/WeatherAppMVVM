@@ -30,13 +30,5 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
         manager.stopUpdatingLocation()
     }
     
-    func getLocation(from location: CLLocation, completion: @escaping (String) -> Void) {
-        
-        geoCoder.reverseGeocodeLocation(location) { placemark, error in
-            guard let city = placemark?.first?.administrativeArea else { return }
-            completion(city)
-        }
-     
-        
-    }
+    
 }

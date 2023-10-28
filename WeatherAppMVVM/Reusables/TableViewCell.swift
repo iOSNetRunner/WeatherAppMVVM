@@ -62,6 +62,7 @@ final class TableViewCell: UITableViewCell {
         dayLabel.text = nil
         minTemperatureLabel.text = nil
         maxTemperatureLabel.text = nil
+        weatherImageView.image = nil
     }
     
     func configureDay(with string: String) {
@@ -87,8 +88,8 @@ final class TableViewCell: UITableViewCell {
         maxTemperatureLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         dayLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
-        weatherImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 150).isActive = true
-        minTemperatureLabel.leftAnchor.constraint(equalTo: weatherImageView.rightAnchor, constant: 50).isActive = true
+        weatherImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 100).isActive = true
+        minTemperatureLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -150).isActive = true
         maxTemperatureLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
     }
     

@@ -25,6 +25,7 @@ final class MainViewController: UIViewController {
     //MARK: - Private properties
     private let viewModel = MainViewControllerViewModel()
     private let locationManager = LocationManager.shared
+    private let geocoder = Geocoder.shared
     private let dateDecoder = DateDecoder.shared
     private let weatherDecoder = WeatherDecoder.shared
     private let bag = DisposeBag()
@@ -44,7 +45,7 @@ final class MainViewController: UIViewController {
             
             self.bindLabels()
             
-            self.locationManager.getLocation(from: location) { city in
+            self.geocoder.getLocationTitle(from: location) { city in
                 self.currentPlaceLabel.text = city
             }
         }
