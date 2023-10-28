@@ -10,30 +10,30 @@ import UIKit
 final class TableViewCell: UITableViewCell {
     
     static var identifier: String { "\(Self.self)" }
-
+    
     private let dayLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 15)
         
         return label
     }()
-
+    
     private let weatherImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(systemName: "cloud.sun.rain.fill")?.withRenderingMode(.alwaysOriginal)
         return imageView
     }()
     
     private let minTemperatureLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = .systemGray4
         return label
     }()
     
     private let maxTemperatureLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = .white
         return label

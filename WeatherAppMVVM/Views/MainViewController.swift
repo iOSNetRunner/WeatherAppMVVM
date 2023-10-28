@@ -8,9 +8,8 @@
 import UIKit
 import RxCocoa
 import RxSwift
-import CoreLocation
 
-final class MainViewController: UIViewController, CLLocationManagerDelegate {
+final class MainViewController: UIViewController {
     
     //MARK: - IBOutlets
     @IBOutlet weak var currentPlaceLabel: UILabel!
@@ -29,13 +28,12 @@ final class MainViewController: UIViewController, CLLocationManagerDelegate {
     private let dateDecoder = DateDecoder.shared
     private let weatherDecoder = WeatherDecoder.shared
     private let bag = DisposeBag()
-
+    
     //MARK: - View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         applyVisualParameters()
-        
         
         locationManager.getUserLocation { location in
             self.viewModel.getHourlyForecast()
@@ -46,27 +44,17 @@ final class MainViewController: UIViewController, CLLocationManagerDelegate {
             
             self.bindLabels()
             
-            self.currentPlaceLabel.text = "CURRENT PLACE"
-            
+            self.locationManager.getLocation(from: location) { city in
+                self.currentPlaceLabel.text = city
+            }
         }
-        
-        
-        
-        
-        
     }
-    
-    
-    
-    
-    
-    
 
-
-   //MARK: RX bindings
-    func bindHourlyForecast() {
+    
+    //MARK: RX bindings
+    private func bindHourlyForecast() {
         hourList.rx.setDelegate(self).disposed(by: bag)
-
+        
         viewModel.hourlyForecast.bind(to: hourList.rx.items(cellIdentifier: CollectionViewCell.identifier, cellType: CollectionViewCell.self)) { row, item, cell in
             
             cell.configureTime(with: self.dateDecoder.setTime(by: item.timepoint))
@@ -78,7 +66,7 @@ final class MainViewController: UIViewController, CLLocationManagerDelegate {
     
     
     
-    func bindWeekForecast() {
+    private func bindWeekForecast() {
         weekList.rx.setDelegate(self).disposed(by: bag)
         
         viewModel.weekForecast.bind(to: weekList.rx.items(cellIdentifier: TableViewCell.identifier, cellType: TableViewCell.self)) { (row, item, cell) in
@@ -90,12 +78,13 @@ final class MainViewController: UIViewController, CLLocationManagerDelegate {
         }.disposed(by: bag)
     }
     
-    func bindLabels() {
+    
+    private func bindLabels() {
         viewModel.hourlyForecast.bind { data in
             guard let temperature = data.first?.temperature else { return }
             
             DispatchQueue.main.async {
-                self.currentTemperatureLabel.text = temperature.description + .degree
+                self.currentTemperatureLabel.text = .space + temperature.description + .degree
             }
         }.disposed(by: bag)
         
@@ -124,6 +113,8 @@ final class MainViewController: UIViewController, CLLocationManagerDelegate {
     //MARK: - Flow
     private func applyVisualParameters() {
         view.setGradientBackground()
+        
+        weekList.rowHeight = .fourty
         
         currentTemperatureLabel.layer.shadowColor = .black
         currentTemperatureLabel.layer.shadowOpacity = .pointTwo

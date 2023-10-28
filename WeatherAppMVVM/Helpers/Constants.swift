@@ -17,6 +17,7 @@ extension String {
     static let currently = "Currently "
     static let max = "Max: "
     static let min = ", min: "
+    static let space = " "
 }
 
 extension Int {
@@ -37,6 +38,7 @@ extension CGFloat {
     static let pointTwo: CGFloat = 0.2
     static let ten: CGFloat = 10
     static let fifteen: CGFloat = 15
+    static let fourty: CGFloat = 40
 }
 
 extension CGColor {
