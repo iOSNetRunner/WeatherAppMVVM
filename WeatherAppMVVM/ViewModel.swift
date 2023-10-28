@@ -11,22 +11,22 @@ import RxCocoa
 
 final class ViewModel {
     
+    
+    
     let hourlyForecast = BehaviorSubject(value: [Data]())
     let weekForecast = BehaviorSubject(value: [WeekData]())
     
     
+    
     func getHourlyForecast() {
-        let url = URL(string: "https://www.7timer.info/bin/api.pl?lon=113.17&lat=23.09&product=civil&output=json")
-        let task = URLSession.shared.dataTask(with: url!) { data, response, error in
-            guard let data = data else {
-                print("guard nope")
-                return
-            }
+        
+        
+        let url = URLMaker.generateURL(isForWeek: false)
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
             do {
-                
                 let responseData = try JSONDecoder().decode(HourForecast.self, from: data)
                 self.hourlyForecast.on(.next(responseData.data))
-                
                 
             } catch {
                 
@@ -39,17 +39,12 @@ final class ViewModel {
     
     
     func getWeekForecast() {
-        let url = URL(string: "https://www.7timer.info/bin/api.pl?lon=113.17&lat=23.09&product=civillight&output=json")
-        let task = URLSession.shared.dataTask(with: url!) { data, response, error in
-            guard let data = data else {
-                print("guard nope")
-                return
-            }
+        let url = URLMaker.generateURL(isForWeek: true)
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
             do {
-                
                 let responseData = try JSONDecoder().decode(WeekForecast.self, from: data)
                 self.weekForecast.on(.next(responseData.data))
-                
                 
             } catch {
                 
