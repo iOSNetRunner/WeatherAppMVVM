@@ -21,8 +21,6 @@ final class CollectionViewCell: UICollectionViewCell {
     
     private let weatherImageView: UIImageView = {
         let imageView = UIImageView()
-    
-        imageView.image = UIImage(systemName: "cloud.sun.fill")?.withRenderingMode(.alwaysOriginal)
         imageView.contentMode = .scaleAspectFill
 
         return imageView
@@ -62,8 +60,12 @@ final class CollectionViewCell: UICollectionViewCell {
         temperatureLabel.text = String(int) + "º"
     }
     
-    func configureTime(with int: Int) {
-        timeLabel.text = String(int)
+    func configureTime(with string: String) {
+        timeLabel.text = string
+    }
+    
+    func configureImage(with string: String) {
+        weatherImageView.image = UIImage(systemName: string)?.withRenderingMode(.alwaysOriginal)
     }
     
     func configureConstraints() {

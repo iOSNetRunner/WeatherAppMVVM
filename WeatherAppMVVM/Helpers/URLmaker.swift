@@ -20,16 +20,11 @@ final class URLMaker {
         let hourEndPoint = "lon=\(lon ?? .zero)&lat=\(lat ?? .zero)&product=civil&output=json"
         let weekEndPoint = "lon=\(lon ?? .zero)&lat=\(lat ?? .zero)&product=civillight&output=json"
         
-        
-        
         if isForWeek {
             print(baseURL + apiAccess + weekEndPoint)
             return URL(string: baseURL + apiAccess + weekEndPoint)!
-            
         } else {
             return URL(string: baseURL + apiAccess + hourEndPoint)!
         }
-        
-        
     }
 }

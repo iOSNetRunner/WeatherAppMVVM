@@ -19,7 +19,7 @@ final class TableViewCell: UITableViewCell {
         return label
     }()
 
-    private let weatherImage: UIImageView = {
+    private let weatherImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.image = UIImage(systemName: "cloud.sun.rain.fill")?.withRenderingMode(.alwaysOriginal)
         return imageView
@@ -44,12 +44,12 @@ final class TableViewCell: UITableViewCell {
         super.draw(rect)
         
         contentView.addSubview(dayLabel)
-        contentView.addSubview(weatherImage)
+        contentView.addSubview(weatherImageView)
         contentView.addSubview(minTemperatureLabel)
         contentView.addSubview(maxTemperatureLabel)
         
         dayLabel.translatesAutoresizingMaskIntoConstraints = false
-        weatherImage.translatesAutoresizingMaskIntoConstraints = false
+        weatherImageView.translatesAutoresizingMaskIntoConstraints = false
         minTemperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         maxTemperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -64,8 +64,12 @@ final class TableViewCell: UITableViewCell {
         maxTemperatureLabel.text = nil
     }
     
-    func configureDay(with int: Int) {
-        dayLabel.text = String(int)
+    func configureDay(with string: String) {
+        dayLabel.text = string
+    }
+    
+    func configureImage(with string: String) {
+        weatherImageView.image = UIImage(systemName: string)?.withRenderingMode(.alwaysOriginal)
     }
     
     func configureMinTemperature(with int: Int) {
@@ -78,13 +82,13 @@ final class TableViewCell: UITableViewCell {
     
     func applyConstraints() {
         dayLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        weatherImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        weatherImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         minTemperatureLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         maxTemperatureLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         dayLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
-        weatherImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 150).isActive = true
-        minTemperatureLabel.leftAnchor.constraint(equalTo: weatherImage.rightAnchor, constant: 50).isActive = true
+        weatherImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 150).isActive = true
+        minTemperatureLabel.leftAnchor.constraint(equalTo: weatherImageView.rightAnchor, constant: 50).isActive = true
         maxTemperatureLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
     }
     

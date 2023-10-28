@@ -9,14 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ViewModel {
-    
-    
+final class MainViewControllerViewModel {
     
     let hourlyForecast = BehaviorSubject(value: [Data]())
     let weekForecast = BehaviorSubject(value: [WeekData]())
-    
-    
     
     func getHourlyForecast() {
         
