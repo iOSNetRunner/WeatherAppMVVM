@@ -19,14 +19,13 @@ final class SearchTableViewCell: UITableViewCell {
         return label
     }()
     
-    
-    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
         contentView.addSubview(locationLabel)
         contentView.backgroundColor = .systemCyan
-            locationLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        locationLabel.translatesAutoresizingMaskIntoConstraints = false
         
         applyConstraints()
     }
@@ -37,11 +36,6 @@ final class SearchTableViewCell: UITableViewCell {
     
     func applyConstraints() {
         locationLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        
-        
         locationLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
-        
     }
-    
-    
 }

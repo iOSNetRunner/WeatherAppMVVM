@@ -137,7 +137,6 @@ final class MainViewController: UIViewController, UIScrollViewDelegate {
         minMaxTemperatureLabel.layer.shadowOpacity = .pointTwo
         minMaxTemperatureLabel.layer.shadowRadius = .ten
         
-        
         hourList.layer.cornerRadius = .fifteen
         hourList.backgroundColor = .systemGray4.withAlphaComponent(.pointTwo)
         
