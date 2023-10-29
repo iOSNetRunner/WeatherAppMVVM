@@ -18,6 +18,7 @@ extension String {
     static let max = "Max: "
     static let min = ", min: "
     static let space = " "
+    static let searchPlaceholder = "Search for a city or airport"
 }
 
 extension Int {

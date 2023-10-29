@@ -12,7 +12,6 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     static let shared = LocationManager()
     
     let manager = CLLocationManager()
-    let geoCoder = CLGeocoder()
     
     var completion: ((CLLocation) -> Void)?
     var lastLocation: String?
@@ -23,6 +22,8 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
         manager.delegate = self
         manager.startUpdatingLocation()
     }
+    
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }

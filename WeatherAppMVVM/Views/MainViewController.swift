@@ -9,7 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class MainViewController: UIViewController {
+final class MainViewController: UIViewController, UIScrollViewDelegate {
     
     //MARK: - IBOutlets
     @IBOutlet weak var currentPlaceLabel: UILabel!
@@ -34,6 +34,8 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         applyVisualParameters()
         
         locationManager.getUserLocation { location in
@@ -50,6 +52,8 @@ final class MainViewController: UIViewController {
             }
         }
     }
+    
+    
 
     
     //MARK: RX bindings
