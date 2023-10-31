@@ -34,8 +34,6 @@ final class MainViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         applyVisualParameters()
         
         locationManager.getUserLocation { location in
@@ -104,15 +102,6 @@ final class MainViewController: UIViewController, UIScrollViewDelegate {
             }
         }.disposed(by: bag)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     //MARK: - Flow

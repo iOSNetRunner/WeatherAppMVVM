@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import CoreLocation
 
 final class MainViewControllerViewModel {
     
@@ -15,8 +16,6 @@ final class MainViewControllerViewModel {
     let weekForecast = BehaviorSubject(value: [WeekData]())
     
     func getHourlyForecast() {
-        
-        
         let url = URLMaker.generateURL(isForWeek: false)
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else { return }

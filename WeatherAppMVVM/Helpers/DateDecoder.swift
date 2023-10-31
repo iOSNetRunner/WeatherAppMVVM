@@ -10,7 +10,7 @@ final class DateDecoder {
     
     static let shared = DateDecoder()
     
-    private init () {}
+    private init() {}
     
     private let formatter = DateFormatter()
     private let currentDate = Date()

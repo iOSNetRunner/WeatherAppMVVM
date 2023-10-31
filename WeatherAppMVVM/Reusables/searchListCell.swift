@@ -25,9 +25,15 @@ final class SearchTableViewCell: UITableViewCell {
         contentView.addSubview(locationLabel)
         contentView.backgroundColor = .systemCyan
         
+        
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
         
         applyConstraints()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        locationLabel.text = nil
     }
     
     func configureLocationLabel(with string: String) {
