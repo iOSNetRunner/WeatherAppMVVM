@@ -9,11 +9,7 @@ import UIKit
 
 final class WeatherDecoder {
     
-    static let shared = WeatherDecoder()
-    
-    private init () {}
-    
-    func setWeatherTitle(from data: String) -> String {
+   static func setWeatherTitle(from data: String) -> String {
         switch data {
         case "pcloudy": return "partly cloudy"
         case "mcloudy": return "cloudy"
@@ -33,7 +29,7 @@ final class WeatherDecoder {
         }
     }
     
-    func setWeatherImageTitle(from data: String) -> String {
+   static func setWeatherImageTitle(from data: String) -> String {
         switch data {
         case "pcloudy", "pcloudynight", "pcloudyday": return "cloud.sun.fill"
         case "mcloudy", "mcloudynight", "mcloudyday": return "cloud.fill"
@@ -53,7 +49,7 @@ final class WeatherDecoder {
         }
     }
     
-    func setWindTitle(from data: Int) -> String {
+   static func setWindTitle(from data: Int) -> String {
         switch data {
         case 1: return "Wind gusts below 0.3 m/s."
         case 2: return "Wind gusts are up to 0.3-3.4 m/s."

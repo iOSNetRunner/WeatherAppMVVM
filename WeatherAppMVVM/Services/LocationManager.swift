@@ -14,15 +14,19 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     let manager = CLLocationManager()
     
     var completion: ((CLLocation) -> Void)?
-    var lastLocation: String?
     
-    public func getUserLocation(completion: @escaping ((CLLocation) -> Void)) {
-        self.completion = completion
+    func requestAutorization(completion: @escaping ((Bool) -> Void)) {
         manager.requestWhenInUseAuthorization()
         manager.delegate = self
-        manager.startUpdatingLocation()
+        if manager.authorizationStatus != .restricted {
+            manager.startUpdatingLocation()
+            return completion(true) }
     }
     
+    func getUserLocation(completion: @escaping ((CLLocation) -> Void)) {
+        self.completion = completion
+        manager.startUpdatingLocation()
+    }
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -30,6 +34,4 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
         completion?(location)
         manager.stopUpdatingLocation()
     }
-    
-    
 }

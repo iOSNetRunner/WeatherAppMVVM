@@ -23,38 +23,35 @@ final class MainViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var weekList: UITableView!
     
     //MARK: - Private properties
-    private let viewModel = MainViewControllerViewModel()
-    private let locationManager = LocationManager.shared
-    private let geocoder = Geocoder.shared
+    private var isAuthorized = false
+    private let viewModel = MainViewControllerViewModel.shared
     private let dateDecoder = DateDecoder.shared
-    private let weatherDecoder = WeatherDecoder.shared
     private let bag = DisposeBag()
     
     //MARK: - View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        viewModel.delegate = self
         applyVisualParameters()
         
-        locationManager.getUserLocation { location in
-            self.viewModel.getHourlyForecast()
-            self.viewModel.getWeekForecast()
-            
-            self.bindHourlyForecast()
-            self.bindWeekForecast()
-            
-            self.bindLabels()
-            
-            self.geocoder.getLocationTitle(from: location) { city in
-                self.currentPlaceLabel.text = city
-            }
-        }
+        viewModel.requestAuthorization()
+        
+        viewModel.cityTitleBehavior.subscribe { text in
+            self.currentPlaceLabel.text = text
+        }.disposed(by: bag)
     }
     
     
-
+    func getAccess() {
+        viewModel.getHourlyForecast()
+        viewModel.getWeekForecast()
+        
+        bindHourlyForecast()
+        bindWeekForecast()
+        
+        bindLabels()
+    }
     
     //MARK: RX bindings
     private func bindHourlyForecast() {
@@ -63,7 +60,7 @@ final class MainViewController: UIViewController, UIScrollViewDelegate {
         viewModel.hourlyForecast.bind(to: hourList.rx.items(cellIdentifier: CollectionViewCell.identifier, cellType: CollectionViewCell.self)) { row, item, cell in
             
             cell.configureTime(with: self.dateDecoder.setTime(by: item.timepoint))
-            cell.configureImage(with: self.weatherDecoder.setWeatherImageTitle(from: item.weather))
+            cell.configureImage(with: WeatherDecoder.setWeatherImageTitle(from: item.weather))
             cell.configureTemperature(with: item.temperature)
             
         }.disposed(by: bag)
@@ -79,7 +76,7 @@ final class MainViewController: UIViewController, UIScrollViewDelegate {
             cell.configureDay(with: self.dateDecoder.setDayOfTheWeek(from: item.date))
             cell.configureMinTemperature(with: item.temperature.min)
             cell.configureMaxTemperature(with: item.temperature.max)
-            cell.configureImage(with: self.weatherDecoder.setWeatherImageTitle(from: item.weather))
+            cell.configureImage(with: WeatherDecoder.setWeatherImageTitle(from: item.weather))
         }.disposed(by: bag)
     }
     
@@ -99,20 +96,11 @@ final class MainViewController: UIViewController, UIScrollViewDelegate {
             
             DispatchQueue.main.async {
                 self.minMaxTemperatureLabel.text = .max + weatherData.temperature.max.description + .degree + .min + weatherData.temperature.min.description  + .degree
-                self.currentWeatherLabel.text = self.weatherDecoder.setWeatherTitle(from: weatherData.weather).capitalized
-                self.currentStatusLabel.text = .currently + self.weatherDecoder.setWeatherTitle(from: weatherData.weather) + .dot + self.weatherDecoder.setWindTitle(from: weatherData.wind10MMax)
+                self.currentWeatherLabel.text = WeatherDecoder.setWeatherTitle(from: weatherData.weather).capitalized
+                self.currentStatusLabel.text = .currently + WeatherDecoder.setWeatherTitle(from: weatherData.weather) + .dot + WeatherDecoder.setWindTitle(from: weatherData.wind10MMax)
             }
         }.disposed(by: bag)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     //MARK: - Flow

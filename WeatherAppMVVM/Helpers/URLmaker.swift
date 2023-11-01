@@ -10,10 +10,14 @@ import CoreLocation
 
 final class URLMaker {
     
-    static func generateURL(isForWeek: Bool) -> URL {
-        
+    static func generateURL(isForWeek: Bool, coordinate: CLLocationCoordinate2D?) -> URL {
         var lon = LocationManager.shared.manager.location?.coordinate.longitude
         var lat = LocationManager.shared.manager.location?.coordinate.latitude
+        
+        if coordinate != nil {
+            lon = coordinate?.longitude
+            lat = coordinate?.latitude
+        }
         
         let baseURL = "https://www.7timer.info/"
         let apiAccess = "bin/api.pl?"
@@ -21,7 +25,6 @@ final class URLMaker {
         let weekEndPoint = "lon=\(lon ?? .zero)&lat=\(lat ?? .zero)&product=civillight&output=json"
         
         if isForWeek {
-            print(baseURL + apiAccess + weekEndPoint)
             return URL(string: baseURL + apiAccess + weekEndPoint)!
         } else {
             return URL(string: baseURL + apiAccess + hourEndPoint)!

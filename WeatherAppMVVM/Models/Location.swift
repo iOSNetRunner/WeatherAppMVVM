@@ -11,4 +11,5 @@ import CoreLocation
 struct Location {
     let title: String
     let coordinate: CLLocationCoordinate2D?
+    let location: CLLocation?
 }
